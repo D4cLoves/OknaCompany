@@ -455,6 +455,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.updateCasesSlider = updateCasesSlider;
 
+    // логика выпадающих подменю
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1200) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parent = trigger.parentElement;
+                parent.classList.toggle('active');
+                
+                // закрываем остальные
+                document.querySelectorAll('.nav-item-dropdown').forEach(dropdown => {
+                    if (dropdown !== parent) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
+    // фильтр товаров при клике в подменю
+    const catalogCatLinks = document.querySelectorAll('[data-catalog-cat]');
+    catalogCatLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const cat = link.getAttribute('data-catalog-cat');
+            const tab = document.querySelector(`.catalog-tab[data-cat="${cat}"]`);
+            if (tab) {
+                // кликаем по табу
+                tab.click();
+            }
+        });
+    });
+
     /* ==========================================================================
        ИНИЦИАЛИЗАЦИЯ
        ========================================================================== */

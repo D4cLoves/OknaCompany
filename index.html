@@ -28,18 +28,35 @@
                             <img src="images/logo.svg" alt="ОкнаКом" class="logo-img">
                         </div>
                         <nav class="nav">
-                            <a href="#services" class="nav-pill">
-                                <span>Услуги</span>
-                                <svg class="chevron" width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 8L0 0H9L4.5 8Z" fill="white"/>
-                                </svg>
-                            </a>
-                            <a href="#catalog" class="nav-pill">
-                                <span>Товары</span>
-                                <svg class="chevron" width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 8L0 0H9L4.5 8Z" fill="white"/>
-                                </svg>
-                            </a>
+                            <div class="nav-item-dropdown">
+                                <button class="nav-pill dropdown-trigger" aria-expanded="false">
+                                    <span>Услуги</span>
+                                    <svg class="chevron" width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 8L0 0H9L4.5 8Z" fill="white"/>
+                                    </svg>
+                                </button>
+                                <div class="submenu">
+                                    <a href="#services" class="submenu-link">Все услуги</a>
+                                    <a href="#services" class="submenu-link">Остекление квартиры</a>
+                                    <a href="#services" class="submenu-link">Остекление балкона</a>
+                                    <a href="#services" class="submenu-link">Утепление балкона</a>
+                                    <a href="#services" class="submenu-link">Панорамное остекление</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-dropdown">
+                                <button class="nav-pill dropdown-trigger" aria-expanded="false">
+                                    <span>Товары</span>
+                                    <svg class="chevron" width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 8L0 0H9L4.5 8Z" fill="white"/>
+                                    </svg>
+                                </button>
+                                <div class="submenu">
+                                    <a href="#catalog" class="submenu-link" data-catalog-cat="okna">Окна</a>
+                                    <a href="#catalog" class="submenu-link" data-catalog-cat="balkony">Балконы</a>
+                                    <a href="#catalog" class="submenu-link" data-catalog-cat="dveri">Двери</a>
+                                    <a href="#catalog" class="submenu-link" data-catalog-cat="furnitura">Фурнитура</a>
+                                </div>
+                            </div>
                             <a href="#about" class="nav-pill">О компании</a>
                             <a href="#cases" class="nav-pill">Наши работы</a>
                             <a href="#reviews" class="nav-pill">Отзывы</a>
@@ -87,10 +104,15 @@
                             </div>
                             <button type="submit" class="btn-submit" onclick="openModal('successModal')">Записаться</button>
                         </form>
-                        <div class="hero-consent">
-                            <img src="images/checkbox.svg" alt="Согласие" class="consent-checkbox">
+                        <label class="hero-consent">
+                            <input type="checkbox" checked required style="display: none;">
+                            <span class="custom-checkbox">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2">
+                                    <polyline points="2 6 5 9 10 3"></polyline>
+                                </svg>
+                            </span>
                             <p>Даю согласие на обработку <a href="#" class="consent-link">персональных данных</a></p>
-                        </div>
+                        </label>
                     </div>
                 </div>
 
