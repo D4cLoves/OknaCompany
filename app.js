@@ -1,5 +1,85 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    /* ==========================================================================
+       СЛАЙДЕР ГЛАВНОГО БАННЕРА (HERO)
+       ========================================================================== */
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroIndicatorsContainer = document.querySelector('.hero-slider-indicators');
+    const heroTextBlock = document.querySelector('.hero-text-block');
+
+    const heroSlidesData = [
+        {
+            title: "Производство и установка пластиковых окон",
+            subtitle: "Скидки до 45% до конца месяца!"
+        },
+        {
+            title: "Остекление и отделка балконов и лоджий",
+            subtitle: "Теплые и холодные варианты под ключ."
+        },
+        {
+            title: "Надежные входные и межкомнатные двери",
+            subtitle: "Прочные конструкции напрямую от производителя."
+        },
+        {
+            title: "Ремонт и обслуживание оконных конструкций",
+            subtitle: "Быстрый выезд мастера и гарантия качества."
+        }
+    ];
+
+    let currentHeroIndex = 0;
+    let heroInterval;
+
+    function showHeroSlide(index) {
+        heroSlides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === index);
+        });
+
+        if (heroTextBlock && heroTitle && heroSubtitle) {
+            heroTextBlock.style.opacity = '0';
+            setTimeout(() => {
+                heroTitle.textContent = heroSlidesData[index].title;
+                heroSubtitle.textContent = heroSlidesData[index].subtitle;
+                heroTextBlock.style.opacity = '1';
+            }, 400);
+        }
+
+        updateHeroIndicators(index);
+    }
+
+    function updateHeroIndicators(activeIndex) {
+        if (!heroIndicatorsContainer) return;
+        heroIndicatorsContainer.innerHTML = '';
+        for (let i = 0; i < heroSlidesData.length; i++) {
+            const span = document.createElement('span');
+            span.className = i === activeIndex ? 'indicator-line' : 'indicator-dot';
+            span.addEventListener('click', () => {
+                currentHeroIndex = i;
+                showHeroSlide(i);
+                resetHeroInterval();
+            });
+            heroIndicatorsContainer.appendChild(span);
+        }
+    }
+
+    function startHeroInterval() {
+        heroInterval = setInterval(() => {
+            currentHeroIndex = (currentHeroIndex + 1) % heroSlidesData.length;
+            showHeroSlide(currentHeroIndex);
+        }, 6000);
+    }
+
+    function resetHeroInterval() {
+        clearInterval(heroInterval);
+        startHeroInterval();
+    }
+
+    if (heroSlides.length > 0) {
+        updateHeroIndicators(0);
+        startHeroInterval();
+    }
+
     /* ==========================================================================
        АККОРДЕОН FAQ
        ========================================================================== */
