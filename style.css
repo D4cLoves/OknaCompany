@@ -2670,10 +2670,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     align-items: stretch;
     width: 100%;
     height: 555px;
+    gap: 20px;
 }
 
 .contacts-map {
-    width: 43%;
+    width: calc(43% - 10px);
     border-radius: 20px;
     overflow: hidden;
     flex-shrink: 0;
@@ -2687,7 +2688,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .contacts-card {
-    width: 55%;
+    width: calc(57% - 10px);
     background: #FFFFFF;
     border-radius: 20px;
     padding: 60px 63px;
