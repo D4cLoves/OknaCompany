@@ -2828,12 +2828,18 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     cursor: pointer;
 }
 
-.contacts-consent input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    accent-color: #FFAB25;
-    cursor: pointer;
+.contacts-consent .custom-checkbox {
+    border-color: #C4C4C4;
+}
+
+.contacts-consent input[type="checkbox"]:checked + .custom-checkbox {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.contacts-consent input[type="checkbox"]:checked + .custom-checkbox::after {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .contacts-consent-text {
