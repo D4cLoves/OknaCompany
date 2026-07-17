@@ -3439,9 +3439,19 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         gap: 24px;
     }
     .case-visuals {
+        position: relative;
         width: 100%;
         height: auto;
         aspect-ratio: 419 / 357;
+    }
+    .case-big-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
     }
     .case-details {
         gap: 20px;
@@ -3720,8 +3730,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         padding: 16px;
         border-radius: 20px;
     }
-    .case-big-img {
-        height: 180px;
+    .case-visuals {
+        aspect-ratio: 16 / 10;
     }
     .case-thumbnails {
         height: 80px;
