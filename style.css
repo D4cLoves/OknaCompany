@@ -2131,6 +2131,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 22px;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     width: max-content;
+    cursor: grab;
+    user-select: none;
 }
 
 .review-card {
@@ -2217,18 +2219,19 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .reviews-dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #D9D9D9;
+    background: #5E5E5E;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .reviews-dot.active {
-    background: var(--primary);
-    width: 24px;
-    border-radius: 4px;
+    background: linear-gradient(to right, #5E5E5E 35%, #B0B0B0 35%);
+    width: 52px;
+    height: 9px;
+    border-radius: 8px;
 }
 
 .reviews-bottom-btn {

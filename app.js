@@ -435,28 +435,66 @@ document.addEventListener('DOMContentLoaded', () => {
         updateReviewsSlider();
     }
 
-    // Drag-to-scroll (мышь)
+    // Drag-to-scroll (как в каталоге)
     let reviewsDragging = false;
     let reviewsStartX = 0;
-    let reviewsDragDelta = 0;
+    let reviewsCurrentX = 0;
+    let reviewsStartOffset = 0;
+    let hasDraggedReviews = false;
+
+    reviewsTrack.addEventListener('dragstart', (e) => { e.preventDefault(); });
 
     reviewsTrack.addEventListener('pointerdown', (e) => {
         reviewsDragging = true;
         reviewsStartX = e.clientX;
-        reviewsDragDelta = 0;
+        reviewsCurrentX = reviewsStartX;
+        hasDraggedReviews = false;
+        reviewsTrack.style.transition = 'none';
+        reviewsTrack.style.cursor = 'grabbing';
+        const matrix = new DOMMatrixReadOnly(window.getComputedStyle(reviewsTrack).transform);
+        reviewsStartOffset = matrix.m41;
         reviewsTrack.setPointerCapture(e.pointerId);
     });
+
     reviewsTrack.addEventListener('pointermove', (e) => {
         if (!reviewsDragging) return;
-        reviewsDragDelta = e.clientX - reviewsStartX;
+        reviewsCurrentX = e.clientX;
+        const dx = reviewsCurrentX - reviewsStartX;
+        if (Math.abs(dx) > 6) hasDraggedReviews = true;
+        reviewsTrack.style.transform = `translateX(${reviewsStartOffset + dx}px)`;
     });
-    reviewsTrack.addEventListener('pointerup', () => {
+
+    reviewsTrack.addEventListener('pointerup', (e) => {
         if (!reviewsDragging) return;
         reviewsDragging = false;
-        if (reviewsDragDelta < -50 && reviewIndex < reviewsCards.length - 1) reviewIndex++;
-        else if (reviewsDragDelta > 50 && reviewIndex > 0) reviewIndex--;
+        reviewsTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        reviewsTrack.style.cursor = 'grab';
+        const dx = e.clientX - reviewsStartX;
+        const cardWidth = reviewsCards[0] ? reviewsCards[0].offsetWidth : 400;
+        if (Math.abs(dx) > cardWidth / 4) {
+            if (dx < 0 && reviewIndex < reviewsCards.length - 1) reviewIndex++;
+            else if (dx > 0 && reviewIndex > 0) reviewIndex--;
+        }
         updateReviewsSlider();
+        reviewsTrack.releasePointerCapture(e.pointerId);
     });
+
+    reviewsTrack.addEventListener('pointercancel', (e) => {
+        if (!reviewsDragging) return;
+        reviewsDragging = false;
+        reviewsTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        reviewsTrack.style.cursor = 'grab';
+        updateReviewsSlider();
+        reviewsTrack.releasePointerCapture(e.pointerId);
+    });
+
+    reviewsTrack.addEventListener('click', (e) => {
+        if (hasDraggedReviews) {
+            e.preventDefault();
+            e.stopPropagation();
+            hasDraggedReviews = false;
+        }
+    }, true);
 
     /* ==========================================================================
        СЛАЙДЕР КЕЙСОВ И ФИЛЬТРЫ
