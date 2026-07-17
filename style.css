@@ -2058,18 +2058,19 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .cases-dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #D9D9D9;
+    background: #5E5E5E;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .cases-dot.active {
-    background: var(--primary);
-    width: 24px;
-    border-radius: 4px;
+    background: linear-gradient(to right, #5E5E5E 35%, #B0B0B0 35%);
+    width: 52px;
+    height: 9px;
+    border-radius: 8px;
 }
 
 /* ==================== ОТЗЫВЫ ==================== */

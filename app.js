@@ -605,6 +605,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Drag-to-scroll logic for Cases Slider
+    let casesDragging = false;
+    let casesStartX = 0;
+    let casesCurrentX = 0;
+    let casesStartOffset = 0;
+    let hasDraggedCases = false;
+
+    casesTrack.addEventListener('dragstart', (e) => { e.preventDefault(); });
+
+    casesTrack.addEventListener('pointerdown', (e) => {
+        if (filteredCases.length <= 1) return;
+        casesDragging = true;
+        casesStartX = e.clientX;
+        casesCurrentX = casesStartX;
+        hasDraggedCases = false;
+        casesTrack.style.transition = 'none';
+        casesTrack.style.cursor = 'grabbing';
+        
+        const matrix = new DOMMatrixReadOnly(window.getComputedStyle(casesTrack).transform);
+        casesStartOffset = matrix.m41;
+        
+        casesTrack.setPointerCapture(e.pointerId);
+    });
+
+    casesTrack.addEventListener('pointermove', (e) => {
+        if (!casesDragging) return;
+        casesCurrentX = e.clientX;
+        const dx = casesCurrentX - casesStartX;
+        if (Math.abs(dx) > 6) hasDraggedCases = true;
+        casesTrack.style.transform = `translateX(${casesStartOffset + dx}px)`;
+    });
+
+    casesTrack.addEventListener('pointerup', (e) => {
+        if (!casesDragging) return;
+        casesDragging = false;
+        casesTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        casesTrack.style.cursor = 'grab';
+        
+        const dx = e.clientX - casesStartX;
+        const cardWidth = filteredCases[0] ? filteredCases[0].offsetWidth : 940;
+        const gap = 40;
+        
+        if (Math.abs(dx) > cardWidth / 4) {
+            if (dx < 0 && caseIndex < filteredCases.length - 1) {
+                caseIndex++;
+            } else if (dx > 0 && caseIndex > 0) {
+                caseIndex--;
+            }
+        }
+        updateCasesSlider();
+        casesTrack.releasePointerCapture(e.pointerId);
+    });
+
+    casesTrack.addEventListener('pointercancel', (e) => {
+        if (!casesDragging) return;
+        casesDragging = false;
+        casesTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        casesTrack.style.cursor = 'grab';
+        updateCasesSlider();
+        casesTrack.releasePointerCapture(e.pointerId);
+    });
+
+    casesTrack.addEventListener('click', (e) => {
+        if (hasDraggedCases) {
+            e.preventDefault();
+            e.stopPropagation();
+            hasDraggedCases = false;
+        }
+    }, true);
+
     window.updateCasesSlider = updateCasesSlider;
 
     // логика выпадающих подменю
