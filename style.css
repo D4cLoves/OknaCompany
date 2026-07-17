@@ -2252,7 +2252,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 8px;
     align-items: center;
     justify-content: center;
-    margin-top: 36px;
+    margin-top: 96px;
 }
 
 .reviews-dot {
@@ -3684,6 +3684,9 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .reviews-slider-track {
         gap: 16px;
+    }
+    .reviews-dots {
+        margin-top: 40px;
     }
     .review-card {
         width: calc(100vw - 40px);
