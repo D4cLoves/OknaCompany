@@ -1948,7 +1948,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 .case-details {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
     width: 419px;
     flex-shrink: 0;
@@ -1961,7 +1961,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     font-weight: 500;
     line-height: 100%;
     color: #1F1F1F;
-    margin: 0;
+    margin: 0 0 32px 0;
     height: 29px;
 }
 
@@ -1969,6 +1969,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 28px;
 }
 
 .case-description h4 {
@@ -1994,7 +1995,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 .case-meta {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
 
 .meta-item {
