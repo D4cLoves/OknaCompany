@@ -1384,8 +1384,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 10px;
     border-radius: 10px;
     padding: 24px 65px;
-    font-size: 16px;
-    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 100%;
+    text-align: center;
     color: #8C9397;
     background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
@@ -1395,9 +1398,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .catalog-tab.active {
-    background-color: var(--primary);
+    background-color: #FFB348;
     color: #1F1F1F;
-    border-color: var(--primary);
+    font-weight: 500;
+    border-color: #FFB348;
     box-shadow: 0 4px 15px rgba(255, 171, 37, 0.3);
 }
 
@@ -1408,9 +1412,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 
 .catalog-slider-wrapper {
     position: relative;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     overflow: hidden;
-    padding: 10px 0;
+    padding: 20px 0 54px;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -1426,12 +1432,17 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     width: max-content;
     cursor: grab;
     user-select: none;
+    touch-action: pan-y;
+    padding-left: max(20px, calc((100vw - 1420px) / 2 + 20px));
+    padding-right: max(20px, calc((100vw - 1420px) / 2 + 20px));
 }
 
 .catalog-slider-track.centered {
     width: 100%;
     justify-content: center;
     transform: none !important;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .catalog-card {
@@ -1473,28 +1484,37 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .catalog-info h3 {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     color: #1F1F1F;
     margin-bottom: 15px;
-    line-height: 1.3;
-    text-align: left;
+    line-height: 120%;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    height: 44px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .catalog-features {
     list-style: none;
     margin: 0 0 25px 0;
     padding: 0;
-    width: 100%;
+    width: 300px;
+    height: 76px;
     text-align: left;
-    flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .catalog-features li {
-    font-size: 14px;
-    color: #4F4F4F;
-    line-height: 1.6;
-    margin-bottom: 8px;
+    font-size: 16px;
+    color: #525252;
+    line-height: 100%;
+    margin-bottom: 4px;
 }
 
 .catalog-bottom {
@@ -1510,21 +1530,27 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    gap: 6px;
+    gap: 7px;
     margin-bottom: 20px;
     justify-content: flex-start;
 }
 
 .price-label {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     color: #1F1F1F;
+    line-height: 100%;
+    width: 21px;
+    height: 22px;
 }
 
 .price-value {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
     color: #1F1F1F;
+    line-height: 100%;
+    width: 103px;
+    height: 29px;
 }
 
 .btn-catalog {
@@ -1623,13 +1649,28 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 @media (max-width: 1024px) {
     .catalog-card {
         width: 290px;
-        height: 650px;
+        height: 600px;
     }
     .catalog-img {
         height: 220px;
+        margin: 0 auto 15px auto;
     }
     .catalog-info h3 {
-        font-size: 18px;
+        font-size: 16px;
+        height: 38px;
+        margin-bottom: 10px;
+    }
+    .catalog-features {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+    .catalog-features li {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+    .catalog-price {
+        margin-bottom: 15px;
     }
 }
 
