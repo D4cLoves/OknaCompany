@@ -2392,7 +2392,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 /* ==================== СТАТЬИ ==================== */
 .articles {
     padding-top: 48px;
-    padding-bottom: 80px;
+    padding-bottom: 48px;
 }
 
 .articles-header {
@@ -2503,6 +2503,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 /* ==================== ВОПРОСЫ И ОТВЕТЫ (FAQ) ==================== */
+.faq {
+    padding-top: 48px;
+    padding-bottom: 80px;
+}
+
 .faq-header {
     display: flex;
     flex-direction: column;
