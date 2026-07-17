@@ -679,7 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (img) img.style.display = '';
         if (playBtn) playBtn.style.display = '';
-        if (progress) progress.style.display = '';
+        if (progress) progress.remove();
     }
 
     videoCards.forEach(card => {
@@ -701,12 +701,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const img = this.querySelector('img');
             const playBtn = this.querySelector('.play-btn');
-            const progress = this.querySelector('.video-progress');
 
-            // Скрываем превью, прогресс и кнопку
+            // Скрываем превью и кнопку
             if (img) img.style.display = 'none';
             if (playBtn) playBtn.style.display = 'none';
-            if (progress) progress.style.display = 'none';
 
             // Создаем тег video
             const videoEl = document.createElement('video');
@@ -719,7 +717,19 @@ document.addEventListener('DOMContentLoaded', () => {
             videoEl.style.objectFit = 'cover';
             videoEl.style.borderRadius = '20px';
 
+            // Создаем прогресс-бар
+            const progressEl = document.createElement('div');
+            progressEl.className = 'video-progress';
+
             this.appendChild(videoEl);
+            this.appendChild(progressEl);
+
+            videoEl.addEventListener('timeupdate', () => {
+                if (videoEl.duration) {
+                    const percent = (videoEl.currentTime / videoEl.duration) * 100;
+                    progressEl.style.setProperty('--progress', `${percent}%`);
+                }
+            });
 
             videoEl.addEventListener('ended', () => {
                 stopVideo(this);
