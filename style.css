@@ -3168,11 +3168,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 
 .footer-social-icon {
     display: block;
-    transition: fill 0.2s;
+    transition: filter 0.2s;
 }
 
 .footer-social-link:hover .footer-social-icon {
-    fill: var(--primary);
+    filter: invert(72%) sepia(35%) saturate(1630%) hue-rotate(346deg) brightness(101%) contrast(101%);
 }
 
 .footer-bottom-row {
