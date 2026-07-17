@@ -154,15 +154,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth <= 1024) return 3;
         return 4;
     }
-    
+
+    function getDefaultCatalogIndex() {
+        const slidesPerPage = getSlidesPerPage();
+        const maxIndex = Math.max(0, visibleCards.length - slidesPerPage);
+        return Math.round(maxIndex / 2);
+    }
+
     function updateSlider() {
         const slidesPerPage = getSlidesPerPage();
-        const cardWidth = visibleCards[0] ? visibleCards[0].offsetWidth : 330;
+        const cardWidth = visibleCards[0] ? (visibleCards[0].offsetWidth || 340) : 340;
         const gap = 20;
         
-        const wrapperWidth = catalogTrack.parentElement.offsetWidth;
-        const totalCardsWidth = visibleCards.length * cardWidth + (Math.max(0, visibleCards.length - 1) * gap);
-        const needsSliding = totalCardsWidth > wrapperWidth;
+        const needsSliding = visibleCards.length > slidesPerPage;
         
         const maxIndex = needsSliding ? Math.max(0, visibleCards.length - slidesPerPage) : 0;
         
@@ -176,32 +180,35 @@ document.addEventListener('DOMContentLoaded', () => {
             catalogTrack.style.transform = 'none';
         }
         
-        prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
-        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-        nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
-        nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+        if (prevBtn) {
+            prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+            prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+        }
+        if (nextBtn) {
+            nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
+            nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+        }
         
         visibleCards.forEach((card, index) => {
-            if (needsSliding && slidesPerPage >= 3 && (index === currentIndex || index === currentIndex + slidesPerPage - 1)) {
+            if (needsSliding && slidesPerPage >= 3 && (index < currentIndex || index > currentIndex + slidesPerPage - 1)) {
                 card.classList.add('faded');
             } else {
                 card.classList.remove('faded');
             }
         });
         
-        const dots = dotsContainer.querySelectorAll('.catalog-dot');
+        const dots = dotsContainer.querySelectorAll('span');
         dots.forEach((dot, idx) => {
             if (idx === currentIndex) {
-                dot.classList.add('active');
+                dot.className = 'indicator-line';
             } else {
-                dot.classList.remove('active');
+                dot.className = 'indicator-dot';
             }
         });
     }
     
     function filterProducts(category) {
         activeCategory = category;
-        currentIndex = 0;
         
         visibleCards = catalogCards.filter(card => {
             const cat = card.getAttribute('data-cat');
@@ -213,18 +220,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return false;
             }
         });
+
+        currentIndex = getDefaultCatalogIndex();
         
         updateSliderLayout();
     }
 
     function updateSliderLayout() {
         const slidesPerPage = getSlidesPerPage();
-        const cardWidth = visibleCards[0] ? visibleCards[0].offsetWidth : 330;
+        const cardWidth = visibleCards[0] ? (visibleCards[0].offsetWidth || 340) : 340;
         const gap = 20;
         
-        const wrapperWidth = catalogTrack.parentElement.offsetWidth;
-        const totalCardsWidth = visibleCards.length * cardWidth + (Math.max(0, visibleCards.length - 1) * gap);
-        const needsSliding = totalCardsWidth > wrapperWidth;
+        const needsSliding = visibleCards.length > slidesPerPage;
         
         if (needsSliding) {
             catalogTrack.classList.remove('centered');
@@ -238,9 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxIndex = Math.max(0, visibleCards.length - slidesPerPage);
             if (maxIndex > 0) {
                 for (let i = 0; i <= maxIndex; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('catalog-dot');
-                    if (i === 0) dot.classList.add('active');
+                    const dot = document.createElement('span');
+                    dot.className = i === currentIndex ? 'indicator-line' : 'indicator-dot';
                     dot.addEventListener('click', () => {
                         currentIndex = i;
                         updateSlider();
@@ -248,17 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     dotsContainer.appendChild(dot);
                 }
                 dotsContainer.style.display = 'flex';
-                prevBtn.style.display = 'flex';
-                nextBtn.style.display = 'flex';
+                if (prevBtn) prevBtn.style.display = 'flex';
+                if (nextBtn) nextBtn.style.display = 'flex';
             } else {
                 dotsContainer.style.display = 'none';
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
             }
         } else {
             dotsContainer.style.display = 'none';
-            prevBtn.style.display = 'none';
-            nextBtn.style.display = 'none';
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
         }
         
         updateSlider();
@@ -272,26 +278,107 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-        }
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+    }
     
-    nextBtn.addEventListener('click', () => {
-        const slidesPerPage = getSlidesPerPage();
-        if (currentIndex < visibleCards.length - slidesPerPage) {
-            currentIndex++;
-            updateSlider();
-        }
-    });
-    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const slidesPerPage = getSlidesPerPage();
+            if (currentIndex < visibleCards.length - slidesPerPage) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+    }
+
     window.addEventListener('resize', () => {
         filterProducts(activeCategory);
         updateReviewsSlider();
         updateCasesSlider();
     });
+
+    // Drag-to-scroll logic for Catalog Slider
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let startOffset = 0;
+    let hasDraggedCatalog = false;
+
+    catalogTrack.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+    
+    catalogTrack.addEventListener('pointerdown', (e) => {
+        if (!visibleCards.length) return;
+        const slidesPerPage = getSlidesPerPage();
+        if (visibleCards.length <= slidesPerPage) return;
+        
+        isDragging = true;
+        startX = e.clientX;
+        currentX = startX;
+        hasDraggedCatalog = false;
+        catalogTrack.style.transition = 'none';
+        catalogTrack.style.cursor = 'grabbing';
+        
+        const style = window.getComputedStyle(catalogTrack);
+        const matrix = new DOMMatrixReadOnly(style.transform);
+        startOffset = matrix.m41;
+        
+        catalogTrack.setPointerCapture(e.pointerId);
+    });
+    
+    catalogTrack.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+        const dx = currentX - startX;
+        if (Math.abs(dx) > 6) hasDraggedCatalog = true;
+        catalogTrack.style.transform = `translateX(${startOffset + dx}px)`;
+    });
+    
+    catalogTrack.addEventListener('pointerup', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        catalogTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        catalogTrack.style.cursor = 'grab';
+        
+        const dx = e.clientX - startX;
+        const cardWidth = visibleCards[0] ? visibleCards[0].offsetWidth : 330;
+        const gap = 20;
+        const slidesPerPage = getSlidesPerPage();
+        
+        if (Math.abs(dx) > cardWidth / 4) {
+            const step = Math.round(dx / (cardWidth + gap));
+            currentIndex -= step;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex > visibleCards.length - slidesPerPage) currentIndex = Math.max(0, visibleCards.length - slidesPerPage);
+        }
+        updateSlider();
+        catalogTrack.releasePointerCapture(e.pointerId);
+    });
+    
+    catalogTrack.addEventListener('pointercancel', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        catalogTrack.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        catalogTrack.style.cursor = 'grab';
+        updateSlider();
+        catalogTrack.releasePointerCapture(e.pointerId);
+    });
+
+    // Intercept click event after dragging
+    catalogTrack.addEventListener('click', (e) => {
+        if (hasDraggedCatalog) {
+            e.preventDefault();
+            e.stopPropagation();
+            hasDraggedCatalog = false;
+        }
+    }, true);
     
     /* ==========================================================================
        СЛАЙДЕР ОТЗЫВОВ
@@ -383,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return matches;
         });
         
-        caseIndex = 0;
+        caseIndex = Math.floor(filteredCases.length / 2);
         renderCasesDots();
         updateCasesSlider();
     }
@@ -439,19 +526,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    casesPrevBtn.addEventListener('click', () => {
-        if (caseIndex > 0) {
-            caseIndex--;
-            updateCasesSlider();
-        }
-    });
+    if (casesPrevBtn) {
+        casesPrevBtn.addEventListener('click', () => {
+            if (caseIndex > 0) {
+                caseIndex--;
+                updateCasesSlider();
+            }
+        });
+    }
     
-    casesNextBtn.addEventListener('click', () => {
-        if (caseIndex < filteredCases.length - 1) {
-            caseIndex++;
-            updateCasesSlider();
-        }
-    });
+    if (casesNextBtn) {
+        casesNextBtn.addEventListener('click', () => {
+            if (caseIndex < filteredCases.length - 1) {
+                caseIndex++;
+                updateCasesSlider();
+            }
+        });
+    }
 
     window.updateCasesSlider = updateCasesSlider;
 

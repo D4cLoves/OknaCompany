@@ -815,13 +815,11 @@ button {
 /* Большая карточка услуг */
 .service-card-large {
     display: flex;
+    align-items: center;
     width: 700px;
     height: 448px;
-    border-radius: 30px;
-    overflow: hidden;
-    background: #FFFFFF;
+    background: transparent;
     flex-shrink: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .service-large-img {
@@ -829,27 +827,50 @@ button {
     height: 100%;
     background-size: cover;
     background-position: center;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .service-large-content {
     width: 360px;
+    height: 376px;
+    background: #FFFFFF;
+    border-radius: 0 30px 30px 0;
     padding: 40px 60px 40px 40px;
     display: flex;
     flex-direction: column;
+    gap: 37px;
     justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .service-large-content h3 {
-    font-size: 24px;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    width: 260px;
+    height: 58px;
+    margin: 0;
+    box-sizing: border-box;
     color: #000000;
-    line-height: 1.2;
 }
 
 .service-large-content p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
     font-size: 18px;
+    line-height: 140%;
+    width: 260px;
+    height: 112px;
+    margin: 0;
+    box-sizing: border-box;
     color: #1F1F1F;
-    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 .btn-detail {
@@ -862,7 +883,13 @@ button {
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    width: fit-content;
+    width: 182px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
 }
 
 .btn-detail:hover {
@@ -874,15 +901,12 @@ button {
 .service-card-notched-wrapper {
     position: relative;
     flex-shrink: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border-radius: 30px;
     transition: var(--transition);
-    background-color: #FFFFFF; /* Белый фон под прозрачный вырез и тень */
 }
 
 .service-card-notched-wrapper:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .w-340 {
@@ -913,6 +937,12 @@ button {
     mask-position: center;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.service-card-notched-wrapper:hover .service-card-notched {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .service-overlay {
@@ -1338,14 +1368,22 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 .catalog-tabs {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 48px;
     flex-wrap: wrap;
 }
 
 .catalog-tab {
-    padding: 14px 28px;
+    flex: 1 1 250px;
+    max-width: 345px;
+    height: 72px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     border-radius: 10px;
+    padding: 24px 65px;
     font-size: 16px;
     font-weight: 500;
     color: #8C9397;
@@ -1373,6 +1411,12 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     width: 100%;
     overflow: hidden;
     padding: 10px 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.catalog-slider-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 .catalog-slider-track {
@@ -1380,6 +1424,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 20px;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     width: max-content;
+    cursor: grab;
+    user-select: none;
 }
 
 .catalog-slider-track.centered {
@@ -1395,7 +1441,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 330px;
+    width: 340px;
     height: 712px;
     flex-shrink: 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
@@ -1412,11 +1458,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .catalog-img {
-    height: 280px;
-    width: 100%;
+    height: 357.14px;
+    width: 300px;
     object-fit: contain;
     margin: 0 auto 20px auto;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .catalog-info {
@@ -1432,14 +1478,14 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     color: #1F1F1F;
     margin-bottom: 15px;
     line-height: 1.3;
-    text-align: center;
+    text-align: left;
 }
 
 .catalog-features {
     list-style: none;
-    margin: 0 auto 25px auto;
+    margin: 0 0 25px 0;
     padding: 0;
-    width: fit-content;
+    width: 100%;
     text-align: left;
     flex-grow: 1;
 }
@@ -1536,23 +1582,42 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 
 .catalog-dots {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
 }
 
 .catalog-dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #D9D9D9;
+    background: rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .catalog-dot.active {
     background: var(--primary);
-    width: 24px;
-    border-radius: 4px;
+    width: 52px;
+    height: 9px;
+    border-radius: 8px;
+}
+
+.catalog-dots .indicator-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #D9D9D9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.catalog-dots .indicator-line {
+    background: linear-gradient(to right, #5E5E5E 35%, #D9D9D9 35%);
+    width: 52px;
+    height: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 1024px) {
@@ -1763,6 +1828,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 40px;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     width: max-content;
+    cursor: grab;
+    user-select: none;
 }
 
 .case-card {
@@ -1817,11 +1884,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     display: flex;
     gap: 10px;
     width: 100%;
-    height: 110px; /* Высота миниатюры под макет */
+    height: 110px;
 }
 
 .case-thumb {
-    width: 78px; /* Расчет ширины миниатюры */
+    width: 78px;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
@@ -2347,7 +2414,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     gap: 16px;
     margin-bottom: 56px;
     text-align: center;
-    max-width: 686px;
+    width: 668px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -2364,13 +2432,28 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .faq-header-top .section-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 100%;
     margin-bottom: 0;
+    width: 668px;
+    height: 68px;
+    max-width: 100%;
+    display: block;
+    color: #000000;
 }
 
 .faq-subtitle {
-    font-size: 18px;
-    color: var(--text-gray);
-    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #000000;
+    width: 668px;
+    height: 93px;
+    max-width: 100%;
+    display: block;
 }
 
 .faq-link {
@@ -2486,10 +2569,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     flex-shrink: 0;
 }
 
-.contacts-map-img {
+.contacts-map iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border: 0;
     display: block;
 }
 
@@ -3037,22 +3120,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         justify-content: center;
         gap: 20px;
     }
-    .service-card-large {
-        display: flex;
-        width: 100%;
-        max-width: 700px;
-        height: auto;
-        flex-direction: column;
-    }
-    .service-large-img {
-        width: 100%;
-        height: 250px;
-    }
-    .service-large-content {
-        width: 100%;
-        padding: 30px;
-        gap: 20px;
-    }
+
     .service-card-notched-wrapper {
         width: 100%;
         max-width: 460px;
@@ -3292,6 +3360,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     .faq-columns {
         grid-template-columns: 1fr;
     }
+    .faq-header-top .section-title,
+    .faq-subtitle {
+        height: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3392,6 +3464,27 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         width: 62px;
         height: 62px;
         border-radius: 16px 16px 30px 16px;
+    }
+    .service-card-large {
+        flex-direction: column;
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+    }
+    .service-large-img {
+        width: 100%;
+        height: 250px;
+    }
+    .service-large-content {
+        width: 100%;
+        height: auto;
+        padding: 30px;
+        border-radius: 0 0 30px 30px;
+    }
+    .service-large-content h3,
+    .service-large-content p {
+        width: 100%;
+        height: auto;
     }
     .footer-top-row {
         flex-direction: column;
@@ -3522,13 +3615,20 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .case-thumbnails {
         height: 80px;
+        gap: 10px;
     }
     .case-thumb {
         width: calc((100% - 40px) / 5);
+        height: 100%;
     }
     .case-meta {
-        grid-template-columns: 1fr;
         gap: 12px;
+    }
+    .meta-item {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        height: auto;
     }
     .contacts-form-row {
         grid-template-columns: 1fr;
