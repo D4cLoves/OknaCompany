@@ -2552,7 +2552,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     line-height: 130%;
     color: #000000;
     width: 668px;
-    height: 93px;
+    height: auto;
     max-width: 100%;
     display: block;
 }
