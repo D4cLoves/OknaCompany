@@ -850,7 +850,8 @@ button {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.service-large-content h3 {
+.service-large-content h3,
+.service-large-title {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 24px;
@@ -1488,7 +1489,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     justify-content: space-between;
 }
 
-.catalog-info h3 {
+.catalog-info h3,
+.catalog-title {
     font-size: 18px;
     font-weight: 500;
     color: #1F1F1F;
@@ -1660,7 +1662,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         height: 220px;
         margin: 0 auto 15px auto;
     }
-    .catalog-info h3 {
+    .catalog-info h3,
+    .catalog-title {
         font-size: 16px;
         height: 38px;
         margin-bottom: 10px;
@@ -1964,7 +1967,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     text-align: left;
 }
 
-.case-details h3 {
+.case-details h3,
+.case-title {
     font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: 500;
@@ -3495,6 +3499,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         height: auto;
     }
     .case-details h3,
+    .case-title,
     .case-description h4,
     .case-description p {
         width: 100%;
@@ -3550,6 +3555,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .step-title,
     .service-large-content h3,
+    .service-large-title,
     .faq-question span {
         font-size: 20px;
     }
@@ -3638,6 +3644,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         border-radius: 0 0 30px 30px;
     }
     .service-large-content h3,
+    .service-large-title,
     .service-large-content p {
         width: 100%;
         height: auto;
@@ -3746,6 +3753,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .step-title,
     .service-large-content h3,
+    .service-large-title,
     .faq-question span {
         font-size: 18px;
     }
