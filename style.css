@@ -1810,7 +1810,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 
 .cases {
     padding-top: 48px;
-    padding-bottom: 80px;
+    padding-bottom: 48px;
 }
 
 .cases-header-block {
@@ -2390,6 +2390,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 /* ==================== СТАТЬИ ==================== */
+.articles {
+    padding-top: 48px;
+    padding-bottom: 80px;
+}
+
 .articles-header {
     display: flex;
     flex-direction: column;
