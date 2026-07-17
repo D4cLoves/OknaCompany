@@ -1808,7 +1808,11 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
 }
 
-/* ==================== НАШИ РАБОТЫ (КЕЙСЫ) ==================== */
+.cases {
+    padding-top: 48px;
+    padding-bottom: 80px;
+}
+
 .cases-header-block {
     display: flex;
     flex-direction: column;
@@ -2026,7 +2030,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     align-items: center;
     justify-content: center;
     gap: 24px;
-    margin-top: 40px;
+    margin-top: 48px;
 }
 
 .cases-arrow {
@@ -2275,10 +2279,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     transform: translateY(-2px);
 }
 
-/* Видео отзывы */
 .reviews-video {
     background-color: var(--bg-gray);
-    padding: 80px 0;
+    padding-top: 80px;
+    padding-bottom: 48px;
 }
 
 .reviews-video-grid {
