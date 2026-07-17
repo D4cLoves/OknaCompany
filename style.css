@@ -648,15 +648,19 @@ button {
 .about-card {
     position: relative;
     width: 100%;
-    height: 471px;
+    min-height: 471px;
+    height: auto;
+    max-width: 1420px;
+    margin: 0 auto;
     border-radius: 30px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    padding: 86px 224px 69px 223px;
+    padding: 86px clamp(40px, 12vw, 224px) 69px clamp(40px, 12vw, 223px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .about-overlay {
@@ -753,6 +757,7 @@ button {
     }
     .about-card {
         height: auto;
+        min-height: auto;
         padding: 40px 30px;
     }
     .about-header {
