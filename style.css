@@ -651,13 +651,13 @@ button {
     width: 100%;
     min-height: 471px;
     height: auto;
-    max-width: 1420px;
+    max-width: 1866px;
     margin: 0 auto;
     border-radius: 30px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    padding: 86px clamp(40px, 12vw, 224px) 69px clamp(40px, 12vw, 223px);
+    padding: 86px 224px 69px 223px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
