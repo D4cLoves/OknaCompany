@@ -1581,7 +1581,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     align-items: center;
     justify-content: center;
     gap: 24px;
-    margin-top: 40px;
+    margin-top: 96px;
 }
 
 .catalog-arrow {
@@ -2073,13 +2073,13 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .reviews-avatar-stack img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-left: -12px;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 6px solid #FFFFFF;
 }
 
 .reviews-avatar-stack img:first-child {
@@ -2164,14 +2164,17 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .review-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 89px;
+    height: 89px;
+    border-radius: 44.5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px 21px 23px 21px;
+    box-sizing: border-box;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 22px;
+    flex-shrink: 0;
 }
 
 .review-author {

@@ -435,6 +435,29 @@ document.addEventListener('DOMContentLoaded', () => {
         updateReviewsSlider();
     }
 
+    // Drag-to-scroll (мышь)
+    let reviewsDragging = false;
+    let reviewsStartX = 0;
+    let reviewsDragDelta = 0;
+
+    reviewsTrack.addEventListener('pointerdown', (e) => {
+        reviewsDragging = true;
+        reviewsStartX = e.clientX;
+        reviewsDragDelta = 0;
+        reviewsTrack.setPointerCapture(e.pointerId);
+    });
+    reviewsTrack.addEventListener('pointermove', (e) => {
+        if (!reviewsDragging) return;
+        reviewsDragDelta = e.clientX - reviewsStartX;
+    });
+    reviewsTrack.addEventListener('pointerup', () => {
+        if (!reviewsDragging) return;
+        reviewsDragging = false;
+        if (reviewsDragDelta < -50 && reviewIndex < reviewsCards.length - 1) reviewIndex++;
+        else if (reviewsDragDelta > 50 && reviewIndex > 0) reviewIndex--;
+        updateReviewsSlider();
+    });
+
     /* ==========================================================================
        СЛАЙДЕР КЕЙСОВ И ФИЛЬТРЫ
        ========================================================================== */
