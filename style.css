@@ -1660,6 +1660,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
         width: 290px;
         height: 600px;
     }
+    .catalog-slider-track {
+        padding-left: max(20px, calc((100vw - 910px) / 2)) !important;
+        padding-right: max(20px, calc((100vw - 910px) / 2)) !important;
+    }
     .catalog-img {
         height: 220px;
         margin: 0 auto 15px auto;
@@ -3630,6 +3634,10 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .catalog-grid {
         grid-template-columns: 1fr;
+    }
+    .catalog-slider-track {
+        padding-left: max(10px, calc((100vw - 290px) / 2)) !important;
+        padding-right: max(10px, calc((100vw - 290px) / 2)) !important;
     }
     .service-btn-round {
         width: 62px;
