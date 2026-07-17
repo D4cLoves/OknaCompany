@@ -3561,6 +3561,15 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     .cases-tabs {
         margin-bottom: 24px !important;
     }
+    .about-card-section {
+        padding: 24px 15px !important;
+    }
+    .about-card {
+        padding: 30px 20px !important;
+    }
+    .about-body {
+        margin-top: 24px !important;
+    }
 
     /* шрифты под мобилки */
     .section-title,
