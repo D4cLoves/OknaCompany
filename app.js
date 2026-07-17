@@ -662,6 +662,68 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Воспроизведение видеоотзывов
+    const videoCards = document.querySelectorAll('.video-card');
+    videoCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Если кликнули на кнопку закрытия
+            if (e.target.classList.contains('video-close-btn')) {
+                e.stopPropagation();
+                const video = this.querySelector('video');
+                if (video) video.remove();
+                const closeBtn = this.querySelector('.video-close-btn');
+                if (closeBtn) closeBtn.remove();
+                
+                const img = this.querySelector('img');
+                const playBtn = this.querySelector('.play-btn');
+                const progress = this.querySelector('.video-progress');
+                
+                if (img) img.style.display = '';
+                if (playBtn) playBtn.style.display = '';
+                if (progress) progress.style.display = '';
+                return;
+            }
+
+            // Если видео уже воспроизводится, ничего не делаем
+            if (this.querySelector('video')) return;
+
+            const img = this.querySelector('img');
+            const playBtn = this.querySelector('.play-btn');
+            const progress = this.querySelector('.video-progress');
+
+            // Скрываем превью и кнопку воспроизведения
+            if (img) img.style.display = 'none';
+            if (playBtn) playBtn.style.display = 'none';
+            if (progress) progress.style.display = 'none';
+
+            // Создаем тег video
+            const video = document.createElement('video');
+            video.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
+            video.controls = true;
+            video.autoplay = true;
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            video.style.borderRadius = '20px';
+
+            // Создаем кнопку закрытия
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'video-close-btn';
+            closeBtn.innerHTML = '&times;';
+
+            this.appendChild(video);
+            this.appendChild(closeBtn);
+
+            video.addEventListener('ended', () => {
+                video.remove();
+                closeBtn.remove();
+                if (img) img.style.display = '';
+                if (playBtn) playBtn.style.display = '';
+                if (progress) progress.style.display = '';
+            });
+        });
+    });
 });
 
 /* ==========================================================================

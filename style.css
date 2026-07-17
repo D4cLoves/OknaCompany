@@ -2311,8 +2311,27 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     fill: #1F1F1F;
 }
 
-.video-card.active .play-btn {
-    display: none;
+.video-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.video-close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .video-progress {
