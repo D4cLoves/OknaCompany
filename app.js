@@ -665,62 +665,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Воспроизведение видеоотзывов
     const videoCards = document.querySelectorAll('.video-card');
+
+    function stopVideo(card) {
+        const video = card.querySelector('video');
+        if (video) {
+            video.pause();
+            video.remove();
+        }
+        
+        const img = card.querySelector('img');
+        const playBtn = card.querySelector('.play-btn');
+        const progress = card.querySelector('.video-progress');
+        
+        if (img) img.style.display = '';
+        if (playBtn) playBtn.style.display = '';
+        if (progress) progress.style.display = '';
+    }
+
     videoCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            // Если кликнули на кнопку закрытия
-            if (e.target.classList.contains('video-close-btn')) {
-                e.stopPropagation();
-                const video = this.querySelector('video');
-                if (video) video.remove();
-                const closeBtn = this.querySelector('.video-close-btn');
-                if (closeBtn) closeBtn.remove();
-                
-                const img = this.querySelector('img');
-                const playBtn = this.querySelector('.play-btn');
-                const progress = this.querySelector('.video-progress');
-                
-                if (img) img.style.display = '';
-                if (playBtn) playBtn.style.display = '';
-                if (progress) progress.style.display = '';
+            const video = this.querySelector('video');
+            
+            // Если видео уже воспроизводится, клик останавливает его и возвращает превью
+            if (video) {
+                stopVideo(this);
                 return;
             }
-
-            // Если видео уже воспроизводится, ничего не делаем
-            if (this.querySelector('video')) return;
+            
+            // Останавливаем все другие видео
+            videoCards.forEach(otherCard => {
+                if (otherCard !== this) {
+                    stopVideo(otherCard);
+                }
+            });
 
             const img = this.querySelector('img');
             const playBtn = this.querySelector('.play-btn');
             const progress = this.querySelector('.video-progress');
 
-            // Скрываем превью и кнопку воспроизведения
+            // Скрываем превью, прогресс и кнопку
             if (img) img.style.display = 'none';
             if (playBtn) playBtn.style.display = 'none';
             if (progress) progress.style.display = 'none';
 
             // Создаем тег video
-            const video = document.createElement('video');
-            video.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
-            video.controls = true;
-            video.autoplay = true;
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.objectFit = 'cover';
-            video.style.borderRadius = '20px';
+            const videoEl = document.createElement('video');
+            videoEl.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
+            videoEl.autoplay = true;
+            videoEl.playsInline = true;
+            videoEl.controls = false; // Убираем элементы управления плеера
+            videoEl.style.width = '100%';
+            videoEl.style.height = '100%';
+            videoEl.style.objectFit = 'cover';
+            videoEl.style.borderRadius = '20px';
 
-            // Создаем кнопку закрытия
-            const closeBtn = document.createElement('button');
-            closeBtn.className = 'video-close-btn';
-            closeBtn.innerHTML = '&times;';
+            this.appendChild(videoEl);
 
-            this.appendChild(video);
-            this.appendChild(closeBtn);
-
-            video.addEventListener('ended', () => {
-                video.remove();
-                closeBtn.remove();
-                if (img) img.style.display = '';
-                if (playBtn) playBtn.style.display = '';
-                if (progress) progress.style.display = '';
+            videoEl.addEventListener('ended', () => {
+                stopVideo(this);
             });
         });
     });
