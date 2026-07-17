@@ -1908,35 +1908,36 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 .case-visuals {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    width: 430px;
+    width: 419px;
+    height: 357px;
     flex-shrink: 0;
 }
 
 .case-big-img {
     width: 100%;
-    height: 231px;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .case-thumbnails {
     display: flex;
-    gap: 10px;
-    width: 100%;
-    height: 110px;
+    gap: 16px;
+    width: 880px;
+    height: 114px;
+    align-items: center;
 }
 
 .case-thumb {
-    width: 78px;
-    height: 100%;
+    width: 163.2px;
+    height: 110px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: var(--transition);
     opacity: 0.7;
+    flex-shrink: 0;
 }
 
 .case-thumb.active, .case-thumb:hover {
@@ -1947,16 +1948,21 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 .case-details {
     display: flex;
     flex-direction: column;
-    gap: 36px;
-    flex-grow: 1;
+    justify-content: space-between;
+    height: 100%;
+    width: 419px;
+    flex-shrink: 0;
     text-align: left;
 }
 
 .case-details h3 {
+    font-family: 'Inter', sans-serif;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 100%;
     color: #1F1F1F;
     margin: 0;
+    height: 29px;
 }
 
 .case-description {
@@ -1966,39 +1972,51 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .case-description h4 {
-    font-size: 16px;
-    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 100%;
     color: #1F1F1F;
     margin: 0;
+    height: 22px;
 }
 
 .case-description p {
-    font-size: 14px;
-    color: var(--text-gray);
-    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    color: #525252;
     margin: 0;
+    height: 126px;
 }
 
 .case-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .meta-item {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
 }
 
 .meta-label {
-    font-size: 14px;
-    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 100%;
+    color: #1F1F1F;
 }
 
 .meta-value {
-    font-size: 24px;
-    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 100%;
     color: #1F1F1F;
 }
 
@@ -3420,6 +3438,14 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .case-details {
         gap: 20px;
+        width: 100%;
+        height: auto;
+    }
+    .case-details h3,
+    .case-description h4,
+    .case-description p {
+        width: 100%;
+        height: auto;
     }
     .articles-grid {
         grid-template-columns: repeat(2, 1fr);
