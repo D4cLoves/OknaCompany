@@ -2656,15 +2656,24 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 /* ==================== КОНТАКТЫ ==================== */
+#contacts .container {
+    max-width: 1874px;
+    width: calc(100% - 46px);
+    margin: 0 auto;
+    padding: 0;
+}
+
 .contacts-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: stretch;
-    min-height: 555px;
+    width: 100%;
+    height: 555px;
 }
 
 .contacts-map {
+    width: 43%;
     border-radius: 20px;
     overflow: hidden;
     flex-shrink: 0;
@@ -2678,6 +2687,7 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 .contacts-card {
+    width: 55%;
     background: #FFFFFF;
     border-radius: 20px;
     padding: 60px 63px;
@@ -3667,14 +3677,22 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     .articles-grid {
         grid-template-columns: 1fr;
     }
+    #contacts .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 20px;
+    }
     .contacts-inner {
-        grid-template-columns: 1fr;
-        min-height: auto;
+        flex-direction: column;
+        height: auto;
+        gap: 32px;
     }
     .contacts-map {
+        width: 100%;
         height: 300px;
     }
     .contacts-card {
+        width: 100%;
         padding: 36px 28px;
     }
     .contacts-card-content {
