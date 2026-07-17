@@ -3425,6 +3425,9 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     .video-progress {
         width: calc(100% - 54px);
     }
+    .cases-slider-track {
+        gap: 20px;
+    }
     .case-card {
         width: calc(100vw - 40px);
         height: auto;
@@ -3437,6 +3440,8 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     }
     .case-visuals {
         width: 100%;
+        height: auto;
+        aspect-ratio: 419 / 357;
     }
     .case-details {
         gap: 20px;
@@ -3448,6 +3453,16 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
     .case-description p {
         width: 100%;
         height: auto;
+    }
+    .case-thumbnails {
+        width: 100%;
+        height: auto;
+        gap: 12px;
+    }
+    .case-thumb {
+        width: calc((100% - 48px) / 5);
+        height: auto;
+        aspect-ratio: 163.2 / 110;
     }
     .articles-grid {
         grid-template-columns: repeat(2, 1fr);

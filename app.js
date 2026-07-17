@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapper = casesTrack.parentElement;
         const wrapperWidth = wrapper.offsetWidth;
         const cardWidth = filteredCases[0].offsetWidth;
-        const gap = 40;
+        const gap = window.innerWidth <= 1024 ? 20 : 40;
         
         const offset = (wrapperWidth / 2) - (cardWidth / 2) - caseIndex * (cardWidth + gap);
         casesTrack.style.transform = `translateX(${offset}px)`;
@@ -645,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const dx = e.clientX - casesStartX;
         const cardWidth = filteredCases[0] ? filteredCases[0].offsetWidth : 940;
-        const gap = 40;
+        const gap = window.innerWidth <= 1024 ? 20 : 40;
         
         if (Math.abs(dx) > cardWidth / 4) {
             if (dx < 0 && caseIndex < filteredCases.length - 1) {
