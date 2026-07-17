@@ -3539,6 +3539,29 @@ label.hero-consent input[type="checkbox"]:checked + .custom-checkbox::after {
 }
 
 @media (max-width: 768px) {
+    .section {
+        padding: 40px 0 !important;
+    }
+    .section-title {
+        margin-bottom: 24px !important;
+    }
+    .services-header,
+    .promotions-header,
+    .catalog-header,
+    .steps-header,
+    .cases-header-block,
+    .reviews-header-block,
+    .articles-header,
+    .faq-header-top {
+        margin-bottom: 28px !important;
+    }
+    .catalog-tabs {
+        margin-bottom: 24px !important;
+    }
+    .cases-tabs {
+        margin-bottom: 24px !important;
+    }
+
     /* шрифты под мобилки */
     .section-title,
     .section-title-left,
