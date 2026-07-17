@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapper = reviewsTrack.parentElement;
         const wrapperWidth = wrapper.offsetWidth;
         const cardWidth = reviewsCards[0].offsetWidth;
-        const gap = 22;
+        const gap = window.innerWidth <= 1024 ? 16 : 22;
         
         const offset = (wrapperWidth / 2) - (cardWidth / 2) - reviewIndex * (cardWidth + gap);
         reviewsTrack.style.transform = `translateX(${offset}px)`;
